@@ -5,7 +5,6 @@ import sys
 import random
 
 class Game():
-    starting_lives = 3
     def __init__(self):
         self.clock = pygame.time.Clock()
         self.FPS = 20
@@ -17,7 +16,7 @@ class Game():
         self.score_render = settings.scorefont.render(f'score : {self.score}', True, (255, 255, 255))
         self.input_render = settings.inputfont.render(self.input, True, (255, 200, 200))
         self.display_change_score = 0
-        self.lives = Game.starting_lives
+        self.lives = settings.starting_lives
         self.time_left = 120
         pygame.init()
 
@@ -28,7 +27,7 @@ class Game():
         settings.window.blit(self.score_render, (0, 0))
         settings.window.blit(self.input_render, (settings.WIDTH//2 - 20, settings.HEIGHT - 50))
         for i in range(self.lives):
-            settings.window.blit(settings.life_diplay, (settings.WIDTH - Game.starting_lives*100 + i*100, 0))
+            settings.window.blit(settings.life_diplay, (settings.WIDTH - settings.starting_lives*100 + i*100, 0))
         if self.display_change_score:
                 self.display_change_score -= 1
                 dcsc = self.display_change_score
@@ -61,13 +60,13 @@ class Game():
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
                         if self.input == self.cur_question.a:
-                            self.change_score(int(((settings.HEIGHT - self.cur_question.y)*(len(self.cur_question.q)))//100))
+                            self.change_score(int(((settings.HEIGHT - self.cur_question.y)*(len(self.cur_question.q))*settings.speed)/1_000))
                             self.cur_question = questions.Question()
-                        self.input = ""  # Clear the input after Enter key is pressed
+                        self.input = ""  
                     elif event.key == pygame.K_BACKSPACE:
-                        self.input = self.input[:-1]  # Remove the last character
+                        self.input = self.input[:-1] 
                     else:
-                        self.input += event.unicode  # Add the typed character to the input text
+                        self.input += event.unicode  
                     self.input_render = settings.inputfont.render(self.input, True, (255, 200, 200))
 
             self.clock.tick(self.FPS)
@@ -75,7 +74,6 @@ class Game():
             self.cur_question.move_down()
             if self.cur_question.y > settings.HEIGHT:
                 self.cur_question = questions.Question()
-                self.change_score(-settings.HEIGHT//3)
                 self.lives -= 1
 
             self.display()

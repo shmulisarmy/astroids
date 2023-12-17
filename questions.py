@@ -3,7 +3,6 @@ import settings
 import pygame
 
 class Question:
-    speed = settings.HEIGHT//150
     question_upto = 0
     
     def __init__(self):
@@ -18,7 +17,7 @@ class Question:
         self.p_g_o = pygame.Rect(self.x, self.y, self.width, self.height)
         self.astroid = pygame.transform.scale(settings.astroid, (self.width*2, self.height*3))
         Question.question_upto += 1
-        Question.speed *= 1.03
+        settings.speed *= 1.03
 
     def display(self):
         settings.window.blit(self.astroid, (self.x-70, self.y-40))
@@ -26,7 +25,7 @@ class Question:
         settings.window.blit(self.q_render, (self.x, self.y, self.width, self.height))
 
     def move_down(self):
-        self.y += Question.speed
+        self.y += settings.speed
         self.p_g_o[1] = self.y
 
 

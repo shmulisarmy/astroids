@@ -11,4 +11,5 @@ inputfont = pygame.font.Font(None, 50)
 astroid = pygame.image.load('astroid.gif')
 backround = pygame.transform.scale(pygame.image.load('space.png'), (WIDTH, HEIGHT))
 life_diplay = pygame.transform.scale(pygame.image.load('live.png'), (100, 100))
-# display_input = pygame.Rect(0, )
+starting_lives = 3
+speed = HEIGHT//150
