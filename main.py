@@ -61,7 +61,7 @@ class Game():
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
                         if self.input == self.cur_question.a:
-                            self.change_score(((settings.HEIGHT - self.cur_question.y)*(len(self.cur_question.q)))//100)
+                            self.change_score(int(((settings.HEIGHT - self.cur_question.y)*(len(self.cur_question.q)))//100))
                             self.cur_question = questions.Question()
                         self.input = ""  # Clear the input after Enter key is pressed
                     elif event.key == pygame.K_BACKSPACE:
