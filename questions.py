@@ -1,0 +1,37 @@
+import random
+import settings
+import pygame
+
+class Question:
+    speed = settings.HEIGHT//150
+    def __init__(self):
+        self.q_index = random.randint(0, len(qs)-1)
+        self.q = qs[self.q_index]
+        self.a = a_s[self.q_index]
+        self.q_render = settings.qfont.render(self.q, True, (0, 0, 0))  # Render text with white color
+        self.width = len(self.q) * 13
+        self.height = 35
+        self.x = random.randint(0, settings.WIDTH - self.width)
+        self.y = 0
+        self.p_g_o = pygame.Rect(self.x, self.y, self.width, self.height)
+
+    def display(self):
+        pygame.draw.rect(settings.window, (255, 255, 255), self.p_g_o)
+        settings.window.blit(self.q_render, (self.x, self.y, self.width, self.height))
+
+    def move_down(self):
+        self.y += Question.speed
+        self.p_g_o[1] = self.y
+
+
+a_s = [
+    "cat", "dog", "hat", "run", "cup", "bat", "sat", "tap", "map", "bag",
+    "log", "pen", "fox", "joy", "jump", "quick", "lazy", "brown", "zebra",
+    "elephant", "excellent", "complicated", "encyclopedia", "parallelogram",
+    "xylophone"
+]
+
+
+qs = [
+    f'type in {i}' for i in a_s
+]
