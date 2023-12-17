@@ -8,15 +8,17 @@ class Question:
         self.q_index = random.randint(0, len(qs)-1)
         self.q = qs[self.q_index]
         self.a = a_s[self.q_index]
-        self.q_render = settings.qfont.render(self.q, True, (0, 0, 0))  # Render text with white color
+        self.q_render = settings.qfont.render(self.q, True, (200, 50, 255))  # Render text with white color
         self.width = len(self.q) * 13
         self.height = 35
         self.x = random.randint(0, settings.WIDTH - self.width)
         self.y = 0
         self.p_g_o = pygame.Rect(self.x, self.y, self.width, self.height)
+        self.astroid = pygame.transform.scale(settings.astroid, (self.width*2, self.height*3))
 
     def display(self):
-        pygame.draw.rect(settings.window, (255, 255, 255), self.p_g_o)
+        settings.window.blit(self.astroid, (self.x-70, self.y-40))
+        # pygame.draw.rect(settings.window, (255, 255, 255), self.p_g_o)
         settings.window.blit(self.q_render, (self.x, self.y, self.width, self.height))
 
     def move_down(self):
@@ -28,7 +30,7 @@ a_s = [
     "cat", "dog", "hat", "run", "cup", "bat", "sat", "tap", "map", "bag",
     "log", "pen", "fox", "joy", "jump", "quick", "lazy", "brown", "zebra",
     "elephant", "excellent", "complicated", "encyclopedia", "parallelogram",
-    "xylophone"
+    "xylophone", 'how', 'how'
 ]
 
 

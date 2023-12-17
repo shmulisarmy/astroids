@@ -32,7 +32,6 @@ class Game():
         if self.display_change_score:
                 self.display_change_score -= 1
                 dcsc = self.display_change_score
-                print(self.recently_changed_num)
                 settings.window.blit(settings.scorefont.render(str(self.recently_changed_num) if self.recently_changed_num < 0 else f'+{self.recently_changed_num}', True, (dcsc*4, dcsc*4, dcsc*4)), self.display_change_score_pos)
         pygame.display.update()
 
