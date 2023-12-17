@@ -78,5 +78,6 @@ class Game():
 
             self.display()
 
-game = Game()
-game.run_game()
+if __name__ == '__main__':
+    game = Game()
+    game.run_game()
