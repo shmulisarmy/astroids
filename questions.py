@@ -15,7 +15,7 @@ class Question:
         self.x = random.randint(0, settings.WIDTH - self.width)
         self.y = 0
         self.p_g_o = pygame.Rect(self.x, self.y, self.width, self.height)
-        self.astroid = pygame.transform.scale(settings.astroid, (self.width*2, self.height*3))
+        self.astroid = pygame.transform.scale(settings.astroid, (self.width*2, settings.astroid_size))
         Question.question_upto += 1
         settings.speed *= 1.03
 
